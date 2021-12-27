@@ -1,0 +1,13 @@
+.login-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.btn {
+  margin-top: 25px;
+  margin-left: 50px;
+}
+
+.username {
+  margin-right: 40px;
+}
