@@ -3,9 +3,10 @@ import * as yup from 'yup';
 const validationRegSchema = yup.object().shape({
   username: yup
     .string()
-    .typeError('Must be a string')
-    .required('Username is required')
-    .min(3, 'min 3 symbols'),
+    // .typeError('Must be a string')
+    .min(3, 'min 3 symbols')
+    .max(10, 'max 10 symbols')
+    .required('Username is required'),
   email: yup.string().email('Email is invalid').required('Email is required'),
   password: yup
     .string()

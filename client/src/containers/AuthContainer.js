@@ -1,9 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import Registration from '../components/auth/AuthComponent';
+import Registration from '../components/Auth/AuthComponent';
 
-const AuthContainer = (props) => {
-  return <Registration />;
+import { requestAuth } from '../actions/index.js';
+
+import { useNavigate } from 'react-router-dom';
+
+const AuthContainer = ({ requestAuth, register }) => {
+  let navigate = useNavigate();
+
+  const handleSubmit = (values) => {
+    requestAuth(values);
+    navigate('/');
+  };
+
+  // const { requestAuth } = props;
+  // console.log(props.username, 'props-reg');
+
+  // const [form, setForm] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  //   confirmPassword: '',
+  // });
+
+  // const changeHandler = (event) => {
+  //   // requestAuth(event.target.value);
+  //   setForm({ ...form, [event.target.name]: event.target.value });
+  //   console.log(form, 'form');
+  //   // console.log(event.target.value, 'ev');
+  //   if (event.target.value) {
+  //     requestAuth(form);
+  //   }
+  // };
+
+  // const changeHandler = (event) => {
+  //   event.preventDefault();
+  //   console.log('btn-reg');
+  //   navigate('/');
+  // };
+
+  return (
+    <Registration
+      // changeHandler={changeHandler}
+      handleSubmit={handleSubmit}
+      // changeHandler={changeHandler}
+    />
+  );
 };
-export default withRouter(connect(null, null)(AuthContainer));
+const mapStateToProps = (response) => ({
+  register: response.register,
+  // username: state.auth.username,
+  // email: state.auth.email,
+  // password: state.auth.password,
+  // confirmPassword: state.auth.confirmPassword,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    requestAuth: (value) => dispatch(requestAuth(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);

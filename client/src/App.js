@@ -1,45 +1,68 @@
 import React from 'react';
-import './App.css';
-
-import Login from './components/login/LoginComponent';
-import Registration from './components/auth/AuthComponent.js';
-import { AppBar, Tabs, Tab } from '@material-ui/core';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import MainPage from './components/mainPage/MainPage';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import MainPageContainer from '../src/containers/MainContainer';
+import LoginContainer from '../src/containers/LoginContainer';
+import AuthContainer from '../src/containers/AuthContainer';
+import ErrorPage from '../src/components/ErrorPage/index';
+import PrivateRoute from './PrivateRoute';
+//import Header from '../src/components/Header/index';
+import BookPageContainer from './containers/BookPageContainer';
+import { useSelector } from 'react-redux';
+import SettingsPageContainer from '../src/containers/SettingsContainer';
+import HeaderContainer from './containers/HeaderContainer';
+import WelcomePage from './components/WelcomePage';
 
 function App() {
-  const routes = ['/Login', '/Registration'];
-  const [value, setValue] = React.useState(0);
-  const handleTabs = (e, val) => {
-    setValue(val);
-  };
-
   return (
-    <div className="App">
-      <Router>
-        <AppBar position="static">
-          <Tabs value={value} onChange={handleTabs}>
-            <Tab
-              label="Login"
-              //value={routes[0]}
-              component={Link}
-              to={routes[0]}
-            />
-            <Tab
-              label="Registartion"
-              // value={routes[1]}
-              component={Link}
-              to={routes[1]}
-            />
-          </Tabs>
-        </AppBar>
-
+    <div>
+      <main>
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Registration" element={<Registration />} />
+          <Route
+            path="/welcome"
+            element={
+              <PrivateRoute>
+                <WelcomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/header"
+            element={
+              <PrivateRoute>
+                <HeaderContainer />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/" element={<LoginContainer />} />
+          <Route path="/registration" element={<AuthContainer />} />
+          <Route
+            path="/main"
+            element={
+              <PrivateRoute>
+                <MainPageContainer />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute>
+                <SettingsPageContainer />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/book/:id"
+            element={
+              <PrivateRoute>
+                <BookPageContainer />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/not-found-404" element={<ErrorPage />} />
+          <Route path="*" element={<Navigate to="/not-found-404" />} />
         </Routes>
-      </Router>
+      </main>
     </div>
   );
 }

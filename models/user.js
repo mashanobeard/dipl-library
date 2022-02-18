@@ -15,6 +15,11 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  pic: {
+    type: String,
+    default:
+      'https://w7.pngwing.com/pngs/500/123/png-transparent-kitten-cat-avatar-hd-cat-avatar-mammal-3d-computer-graphics-heroes.png',
+  },
 });
 
 export default mongoose.model('User', schema);

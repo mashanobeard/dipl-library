@@ -1,17 +1,25 @@
 import { handleActions } from 'redux-actions';
-import * as actions from '../actions/index.js';
+import {
+  requestLogin,
+  successLogin,
+  errorLogin,
+  logOutUser,
+} from '../actions/index.js';
 
-const initialState = {
-  token: null,
-  isAuthenticated: false,
-  username: null,
-};
+const initialState = [];
 
 const LoginReducer = handleActions(
   {
-    [actions.requestLogin]: (state, action) => action.payload.data,
-    [actions.successLogin]: (state, action) => action.payload,
-    [actions.failLogin]: (state, action) => action.payload,
+    [requestLogin]: (state, action) => action.payload,
+
+    [successLogin]: (state, action) => {
+      console.log(action.payload, 'login');
+
+      return { ...action.payload };
+    },
+
+    // [errorLogin]: (state, action) => state,
+    [logOutUser]: (state, action) => initialState,
   },
   initialState
 );

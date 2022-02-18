@@ -11,3 +11,7 @@
 .username {
   margin-right: 40px;
 }
+
+.red-error {
+  color: red;
+}

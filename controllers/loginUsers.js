@@ -18,16 +18,27 @@ const loginUsers = async (req, res) => {
       return res.status(400).json({ message: 'Such user does not exists' });
     }
 
-    const isMatch = bcrypt.compare(password, user.password);
+    const isMatch = bcrypt.compareSync(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: 'Password is incorrect' });
+      return res.status(400).json({ message: 'Invalid password' });
     }
     const jwtSecret = process.env.JWTSECRET;
-    const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '1h' });
-    res.json({ token, userId: user.id });
+    const token = jwt.sign({ id: user.id }, jwtSecret, {
+      expiresIn: '30d',
+    });
+    res.json({
+      token,
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      pic: user.pic,
+      message: 'You are logged in!',
+    });
+    // res.send(user).status(201).json({ message: 'You are logged in!' });
   } catch (error) {
-    return res.status(400).json(e.message);
+    return res.status(400).json(error.message);
   }
 };
 

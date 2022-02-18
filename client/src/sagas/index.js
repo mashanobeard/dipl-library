@@ -1,18 +1,11 @@
-import { takeEvery, put } from 'redux-saga/effects';
-import { requestLogin, successLogin, failLogin } from '../actions/index.js';
+import { all } from 'redux-saga/effects';
+import loginSaga from '../sagas/loginSaga';
+import authSaga from '../sagas/authSaga';
+import booksSaga from '../sagas/booksSaga';
+import bookSaga from '../sagas/bookSaga';
+import settingsSaga from '../sagas/settingsSaga';
 
-export function* sagaWatcher() {
-  try {
-    yield takeEvery(requestLogin, sagaWorker);
-  } catch (error) {
-    yield put(failLogin, error);
-  }
+function* rootSaga() {
+  yield all([loginSaga(), authSaga(), booksSaga(), bookSaga(), settingsSaga()]);
 }
-
-function* sagaWorker(action) {
-  try {
-    yield put(successLogin());
-  } catch (error) {
-    yield put(failLogin, error);
-  }
-}
+export default rootSaga;

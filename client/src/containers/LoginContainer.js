@@ -1,48 +1,62 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Login from '../components/login/LoginComponent';
-import { withRouter } from 'react-router-dom';
-import { requestLogin, successLogin, failLogin } from '../actions/index.js';
 
-const LoginContainer = (props) => {
-  const { requestLogin, successLogin, failLogin } = props;
-  console.log(props);
+import Login from '../components/Login/index.js';
+import { requestLogin } from '../actions/index.js';
+import { useNavigate } from 'react-router-dom';
 
-  const handleRequestLogin = (event) => {
-    requestLogin(event.target.value);
+const LoginContainer = ({ requestLogin, username, email }) => {
+  let navigate = useNavigate();
+
+  const handleSubmit = (values, event) => {
+    requestLogin(values);
+    navigate('/settings');
   };
+  // const handleRoute = (event) => {
+  //   event.preventDefault();
+  //   navigate('/settings');
+  // };
 
-  const handleSuccessLogin = (event) => {
-    successLogin(event.target.value);
-  };
+  console.log(username, 'username');
+  console.log(email, 'email');
 
-  const handlefailLogin = (event) => {
-    failLogin(event.target.value);
-  };
-
-  return (
-    <Login
-      loginRequest={handleRequestLogin}
-      loginSuccess={handleSuccessLogin}
-      loginFail={handlefailLogin}
-    />
-  );
+  return <Login handleSubmitBtn={handleSubmit} />;
 };
 
 const mapStateToProps = (state) => ({
-  username: state.LoginReducer.username,
-  email: state.LoginReducer.email,
-  password: state.LoginReducer.password,
+  username: state.login.username,
+  email: state.login.email,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     requestLogin: (value) => dispatch(requestLogin(value)),
-    successLogin: (value) => dispatch(successLogin(value)),
-    failLogin: (value) => dispatch(failLogin(value)),
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(LoginContainer)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
+
+// const handleRoute = (event) => {
+// event.preventDefault();
+//   navigate('/main');
+// };
+
+// const [user, setUser] = useState({
+//   username: '',
+//   email: '',
+//   password: '',
+// });
+
+// const handleChange = (event) => {
+//   setUser({ ...user, [event.target.name]: event.target.value });
+//   console.log(user, 'user');
+//   if (event.target.value) {
+//     requestLogin(user);
+//   }
+// };
+
+// const handleSuccess = () => {
+//   // event.preventDefault();
+//   console.log('btn');
+//   history.push('/Login/Success');
+// };
