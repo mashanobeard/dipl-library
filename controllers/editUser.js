@@ -33,11 +33,6 @@ import User from '../models/user.js';
 
 // export default editUser;
 const editUser = async (req, res) => {
-  // console.log('Route /edit = ', req.body)
-  // res.header('Access-Control-Allow-Origin', '*');
-  // res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-
   const user = await User.findById(req.body.id);
 
   if (user) {
