@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { AccountCircle } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import './style.css';
-import validationLogSchema from '../../validation/loginValidation.js';
+import validationLogSchema from '../../services/validation/loginValidation.js';
 
 const Login = ({ handleSubmitBtn }) => {
   return (
@@ -22,7 +22,14 @@ const Login = ({ handleSubmitBtn }) => {
         validationSchema={validationLogSchema}
         onSubmit={handleSubmitBtn}
       >
-        {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
+        {
+          ({
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            handleSubmit
+          }) => (
           <Form className="login-form">
             <div>
               <p className="username">

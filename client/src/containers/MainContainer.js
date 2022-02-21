@@ -45,7 +45,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link } from '@material-ui/core';
-import useStyles from '../components/MainPage/style';
+import {useStyles} from '../components/MainPage/style';
 import HeaderContainer from './HeaderContainer';
 
 const MainPageContainer = (props) => {

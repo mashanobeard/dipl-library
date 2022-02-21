@@ -3,7 +3,7 @@ import axios from 'axios/index';
 const axiosInstance = axios.create({
   baseURL: '/api',
   headers: {
-    // 'x-auth-token': localStorage.getItem('user-info'),
+    // 'x-Auth-token': localStorage.getItem('user-info'),
     'Content-Type': 'application/json',
   },
 });

@@ -1,31 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import Login from '../components/Login/index.js';
 import { requestLogin } from '../actions/index.js';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-const LoginContainer = ({ requestLogin, username, email }) => {
+const LoginContainer = ({ requestLogin, token }) => {
   let navigate = useNavigate();
 
-  const handleSubmit = (values, event) => {
+  const handleSubmit = (values) => {
     requestLogin(values);
-    navigate('/settings');
   };
-  // const handleRoute = (event) => {
-  //   event.preventDefault();
-  //   navigate('/settings');
-  // };
 
-  console.log(username, 'username');
-  console.log(email, 'email');
+  useEffect(() => {
+    if (token) {
+      navigate('/settings');
+    }
+  },[token]);
 
   return <Login handleSubmitBtn={handleSubmit} />;
 };
 
 const mapStateToProps = (state) => ({
-  username: state.login.username,
-  email: state.login.email,
+  token: state.login.token
 });
 
 const mapDispatchToProps = (dispatch) => {

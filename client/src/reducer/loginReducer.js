@@ -10,12 +10,12 @@ const initialState = [];
 
 const LoginReducer = handleActions(
   {
-    [requestLogin]: (state, action) => action.payload,
+    [requestLogin]: (state, action) => {
+        return { ...state, ...action.payload };
+    },
 
-    [successLogin]: (state, action) => {
-      console.log(action.payload, 'login');
-
-      return { ...action.payload };
+    [successLogin]: (state, { payload }) => {
+      return { ...state, ...payload };
     },
 
     // [errorLogin]: (state, action) => state,

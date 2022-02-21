@@ -50,10 +50,10 @@ const AuthContainer = ({ requestAuth, register }) => {
 };
 const mapStateToProps = (response) => ({
   register: response.register,
-  // username: state.auth.username,
-  // email: state.auth.email,
-  // password: state.auth.password,
-  // confirmPassword: state.auth.confirmPassword,
+  // username: state.Auth.username,
+  // email: state.Auth.email,
+  // password: state.Auth.password,
+  // confirmPassword: state.Auth.confirmPassword,
 });
 
 const mapDispatchToProps = (dispatch) => {

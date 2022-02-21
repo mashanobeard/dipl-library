@@ -33,7 +33,13 @@ import User from '../models/user.js';
 
 // export default editUser;
 const editUser = async (req, res) => {
-  const user = await User.findById(req.body._id);
+  // console.log('Route /edit = ', req.body)
+  // res.header('Access-Control-Allow-Origin', '*');
+  // res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  // res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+
+  const user = await User.findById(req.body.id);
+
   if (user) {
     user.username = req.body.username || user.username;
     user.email = req.body.email || user.email;

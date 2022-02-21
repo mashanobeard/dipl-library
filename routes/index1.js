@@ -6,7 +6,7 @@ import createController from '../controllers/createBooks.js';
 import updateController from '../controllers/updateBooks.js';
 import book from '../models/book.js';
 
-//import authorize from '../middleware/passport/auth.js';
+//import authorize from '../middleware/passport/Auth.js';
 
 const router1 = express.Router();
 

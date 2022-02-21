@@ -24,7 +24,7 @@ import {
 
 import { useStyles } from './style';
 import HeaderContainer from '../../containers/HeaderContainer';
-import validationSettingsSchema from '../../validation/settingsValidation';
+import validationSettingsSchema from '../../services/validation/settingsValidation';
 
 const SettingsPage = ({ handleUpdate, username, email }) => {
   const classes = useStyles();
@@ -43,7 +43,13 @@ const SettingsPage = ({ handleUpdate, username, email }) => {
             validationSchema={validationSettingsSchema}
             onSubmit={handleUpdate}
           >
-            {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
+            {({
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                handleSubmit
+              }) => (
               <Form onSubmit={handleSubmit}>
                 <CardContent>
                   <Typography className={classes.text} variant="h5">

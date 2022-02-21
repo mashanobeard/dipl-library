@@ -6,8 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import { AccountCircle } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
-import '../Auth/style.css';
-import validationRegSchema from '../../validation/authValidation.js';
+import './/style.css';
+import validationRegSchema from '../../services/validation/authValidation.js';
 
 const Registration = ({ changeHandler, handleSubmit }) => {
   return (
