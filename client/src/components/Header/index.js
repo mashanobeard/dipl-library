@@ -24,13 +24,21 @@ const Header = ({ handlelogOut, handleClickAccount, pic, username }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  // const isAuth = useSelector((state) => state.login.isAuth);
+  // const isAuth = useSelector((state) => state.Login.isAuth);
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.color} color="inherit" position="static">
         <Toolbar>
           <Typography className={classes.title}>Library</Typography>
+
+          <div>
+            <Button color="inherit"
+                    href="/settings"
+                    style={{textTransform: 'none'}}>
+              {username}
+            </Button>
+          </div>
 
           <div>
             <Button color="inherit" href="/main">
@@ -43,7 +51,6 @@ const Header = ({ handlelogOut, handleClickAccount, pic, username }) => {
               Login
             </Button>
           </div>
-          <div>{username}</div>
           <div className={classes.rightToolbar}>
             <Button
               aria-controls="simple-menu"

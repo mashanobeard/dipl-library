@@ -1,7 +1,7 @@
-//import axios from 'axios';
+//import api from 'api';
 // import Cookies from 'js-cookie';
 
-// const axiosInstance = axios.create({
+// const axiosInstance = api.create({
 //   baseURL: '/api',
 //   headers: {
 //     'Content-Type': 'application/json',
@@ -12,27 +12,27 @@
 //   return await axiosInstance.request(config)
 // }
 
-import requests from '../service/requests.js';
+import requests from './requests.js';
 
-export const Registration = async (user) => {
-  return await requests.post('/auth/registration', { data: user });
+export const registerUser = async (user) => {
+  return await requests.post('/Auth/registration', { data: user });
 };
 
-export const Login = async (user, token) => {
-  return await requests.post('/auth/login', {
+export const loginUser = async (user, token) => {
+  return await requests.post('/Auth/Login', {
     data: user,
     // headers: { Authorization: 'Bearer ' + user.token },
   });
 };
 // export const Auth = async (user) => {
-//   return await requests.get('/auth/auth', {
+//   return await requests.get('/Auth/Auth', {
 //     headers: {
 //       Authorization: `Bearer ${localStorage.getItem('token')}`,
 //     },
 //   });
 // };
 
-export const BookList = async (token) => {
+export const getBookList = async (token) => {
   return await requests.get('/library/get', {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -40,12 +40,18 @@ export const BookList = async (token) => {
   });
 };
 
-export const BookId = async (id) => {
+export const getBookId = async (id) => {
   return await requests.get(`/library/get/${id}`);
 };
 
-export const editUser = async (id, data) => {
-  return await requests.post(`/settings/edit`, { data });
+export const editUser = async ({ id, username, email }) => {
+  return await requests.put(`/settings/edit`, {
+    data: {
+      id,
+      username,
+      email
+    }
+  });
 };
 // const getFilms = async (token, query) => {
 //   return await requests.get(`/films${query}`, {
@@ -56,12 +62,12 @@ export const editUser = async (id, data) => {
 // };
 
 // export const Login = (user) =>
-//   axiosInstance.request({ method: 'POST', data: user, url: '/auth/login' });
+//   axiosInstance.request({ method: 'POST', data: user, url: '/Auth/Login' });
 
 // export const Registration = (user) =>
 //   axiosInstance.request({
 //     method: 'POST',
-//     url: '/auth/registration',
+//     url: '/Auth/registration',
 //     data: user,
 //   });
 
@@ -95,7 +101,7 @@ export const editUser = async (id, data) => {
 
 // axiosInstance.interceptors.request.use(
 //   (config) => {
-//     const authToken = Cookies.get('auth-token');
+//     const authToken = Cookies.get('Auth-token');
 
 //     // перехватчик
 //     if (authToken) {

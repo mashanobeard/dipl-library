@@ -23,8 +23,6 @@ const SettingsPageContainer = (props) => {
     handleUpdate,
   };
 
-  console.log(username, 'username');
-
   return <SettingsPage {...settingsProps} />;
 };
 

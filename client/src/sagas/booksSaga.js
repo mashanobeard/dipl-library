@@ -4,9 +4,9 @@ import {
   successGetBooks,
   errorGetBooks,
 } from '../actions/index';
-import { BookList } from '../services/axios/index';
+import { getBookList } from '../services/api/index';
 
-// const getToken = (state) => state.login.token;
+// const getToken = (state) => state.Login.token;
 // console.log(getToken, 'getToken');
 
 function* BooksRequest(action) {
@@ -15,7 +15,7 @@ function* BooksRequest(action) {
     // console.log(respons1, 'token-saga');
 
     // console.log(action.payload, 'act');
-    const response = yield call(BookList);
+    const response = yield call(getBookList);
     const { data } = response;
     console.log(data, 'books');
     // localStorage.getItem('token');

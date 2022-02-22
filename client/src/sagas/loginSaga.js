@@ -1,23 +1,20 @@
 import { takeLatest, put, call } from 'redux-saga/effects';
 import { requestLogin, successLogin, errorLogin } from '../actions/index.js';
-import { Login } from '../services/axios/index';
+import { loginUser } from '../services/api/index';
 
 function* LoginRequest(action) {
   try {
-    console.log(action.payload, 'act-log');
-    const user = yield call(Login, action.payload);
+    const user = yield call(loginUser, action.payload);
     const { data } = user;
-    console.log(data, 'user-data');
+
     localStorage.setItem('token', JSON.stringify(data));
 
-    yield put(
-      successLogin({
-        token: data.token,
-        username: data.username,
-        email: data.email,
-        // pic: data.pic,
-      })
-    );
+    yield put(successLogin({
+      token: data.token,
+      username: data.username,
+      email: data.email,
+      // pic: data.pic,
+    }));
   } catch (error) {
     console.log(error, 'err');
     // yield put(errorLogin(error));
@@ -56,7 +53,7 @@ export default sagaLoginWatcher;
 // function* sagaWorker(action) {
 //   console.log(action, 'saga');
 //   try {
-//     const response = yield call('api/auth/login', action.payload);
+//     const response = yield call('api/Auth/Login', action.payload);
 //     console.log(response.data, 'saga1');
 //     yield put(successLogin(response.data));
 //   } catch (error) {

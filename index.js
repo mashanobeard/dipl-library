@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 import router from '../dipl-library/routes/index.js';
 import router1 from '../dipl-library/routes/index1.js';
 import router2 from './routes/index2.js';
-
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,7 +17,7 @@ app.use(express.json());
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use('/api/auth', router);
+app.use('/api/Auth', router);
 app.use('/api/library', router1);
 app.use('/api/settings', router2);
 

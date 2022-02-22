@@ -1,20 +1,18 @@
 import { call, put, takeLatest, select } from 'redux-saga/effects';
-
-import { editUser } from '../services/axios/index';
-
+import { editUser } from '../services/api/index';
 import {
   requestUpdateUser,
   successUpdateUser,
   errorUpdateUser,
 } from '../actions/index';
-
-const getToken = (state) => state.login.token;
+import {getStorageData} from "../services/localStorage/localStorage";
 
 function* settingWorker(action) {
   try {
-    const token = yield select(getToken);
+    const { id } = getStorageData('token');
+    const { username, email } = action.payload;
 
-    const response = yield call(editUser, action.payload, token);
+    const response = yield call(editUser, { id, username, email });
     yield put(
       successUpdateUser({
         username: response.data.username,

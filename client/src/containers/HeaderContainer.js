@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 import Header from '../components/Header/index';
 import { logOutUser } from '../actions';
 import { useNavigate } from 'react-router-dom';
+import {getStorageData, removeStorageData} from "../services/localStorage/localStorage";
 
 const HeaderContainer = (props) => {
-  const { logOutUser, username } = props;
-  console.log(props);
+  const { logOutUser } = props;
   let navigate = useNavigate();
+  const username = getStorageData('token').username;
 
   const handlelogOut = () => {
     logOutUser();
-    localStorage.removeItem('token');
+    removeStorageData('token');
     navigate('/');
   };
 
   const handleClickAccount = () => {
     navigate('/settings');
   };
-  console.log(username, 'username');
 
   return (
     <Header
@@ -30,13 +30,8 @@ const HeaderContainer = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  username: state.login.username,
-  // pic: state.user.pic,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   logOutUser: () => dispatch(logOutUser()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);
+export default connect(null, mapDispatchToProps)(HeaderContainer);
