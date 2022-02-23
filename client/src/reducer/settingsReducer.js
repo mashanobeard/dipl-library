@@ -4,12 +4,15 @@ import {
   requestUpdateUser,
   successUpdateUser,
   errorUpdateUser,
-  //   errorUpdatePic,
+  errorUpdatePic,
+  requestUpdatePic,
+  successUpdatePic,
 } from '../actions/index';
 
 const initialState = {
   username: '',
   email: '',
+  pic: '',
 };
 
 const settingReducer = handleActions(
@@ -20,11 +23,15 @@ const settingReducer = handleActions(
       return data;
     },
     [errorUpdateUser]: (state, action) => action.payload,
-
-    // [errorUpdatePic]: (state, action) => ({
-    //   processing: false,
-    //   errors: [...action.payload],
-    // }),
+    [requestUpdatePic]: (state, action) => state,
+    [successUpdatePic]: (state, action) => {
+      const picture = { ...action.payload };
+      return picture;
+    },
+    [errorUpdatePic]: (state, action) => {
+      const data = { ...action.payload };
+      return data;
+    },
   },
   initialState
 );

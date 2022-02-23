@@ -1,22 +1,23 @@
-import { call, put, takeLatest, select } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { editUser } from '../services/api/index';
 import {
   requestUpdateUser,
   successUpdateUser,
   errorUpdateUser,
 } from '../actions/index';
-import {getStorageData} from "../services/localStorage/localStorage";
+import { getStorageData } from '../services/localStorage/localStorage';
 
 function* settingWorker(action) {
   try {
     const { id } = getStorageData('token');
-    const { username, email } = action.payload;
+    const { username, email, pic } = action.payload;
 
-    const response = yield call(editUser, { id, username, email });
+    const response = yield call(editUser, { id, username, email, pic });
     yield put(
       successUpdateUser({
         username: response.data.username,
         email: response.data.email,
+        pic: response.data.pic,
       })
     );
   } catch (err) {

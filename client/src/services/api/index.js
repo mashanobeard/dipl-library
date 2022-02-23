@@ -1,5 +1,4 @@
 //import api from 'api';
-// import Cookies from 'js-cookie';
 
 // const axiosInstance = api.create({
 //   baseURL: '/api',
@@ -24,13 +23,6 @@ export const loginUser = async (user, token) => {
     // headers: { Authorization: 'Bearer ' + user.token },
   });
 };
-// export const Auth = async (user) => {
-//   return await requests.get('/Auth/Auth', {
-//     headers: {
-//       Authorization: `Bearer ${localStorage.getItem('token')}`,
-//     },
-//   });
-// };
 
 export const getBookList = async (token) => {
   return await requests.get('/library/get', {
@@ -49,66 +41,24 @@ export const editUser = async ({ id, username, email }) => {
     data: {
       id,
       username,
-      email
-    }
+      email,
+    },
   });
 };
-// const getFilms = async (token, query) => {
-//   return await requests.get(`/films${query}`, {
-//     headers: {
-//       Authorization: `Bearer ${token}`,
-//     },
-//   });
-// };
 
-// export const Login = (user) =>
-//   axiosInstance.request({ method: 'POST', data: user, url: '/Auth/Login' });
+export const editPic = async ({ id, pic }) => {
+  return await requests.put(`/settings/setPicture`, {
+    data: {
+      id,
+      pic,
+    },
+  });
+};
 
-// export const Registration = (user) =>
-//   axiosInstance.request({
-//     method: 'POST',
-//     url: '/Auth/registration',
-//     data: user,
-//   });
+export const postRating = async (data, token) => {
+  return await requests.post('/library/rating', { data });
+};
 
-// export const BookList = (books) =>
-//   axiosInstance.request({
-//     method: 'GET',
-//     url: '/library/get',
-//     data: books,
-//   });
-
-// export const BookId = (books, id) =>
-//   axiosInstance.request({
-//     method: 'GET',
-//     url: `/library/get/${id}`,
-//     data: books,
-//   });
-
-// const request = async (config) => {
-//   return await axiosInstance.request(config);
-// };
-
-// const postReg = async (url, options) => {
-//   console.log(options, 'options');
-//   return await request({ ...options, url, method: 'POST' });
-// };
-
-// export const register = async (data) => {
-//   console.log(data, 'data');
-//   return await postReg('/registration', { data });
-// };
-
-// axiosInstance.interceptors.request.use(
-//   (config) => {
-//     const authToken = Cookies.get('Auth-token');
-
-//     // перехватчик
-//     if (authToken) {
-//       config.headers.authorization = `Bearer ${authToken}`;
-//     }
-
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+export const getRating = async (id, token) => {
+  return await requests.get(`/library/rating/${id}`);
+};

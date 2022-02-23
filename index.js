@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import router from '../dipl-library/routes/index.js';
-import router1 from '../dipl-library/routes/index1.js';
-import router2 from './routes/index2.js';
+import fileUpload from 'express-fileupload';
+import auth from './routes/auth.js';
+import library from './routes/library.js';
+import edit from './routes/edit.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,13 +14,14 @@ const DB_URL = process.env.DB_URL;
 const app = express();
 
 app.use(express.json());
+app.use(fileUpload());
 
 // app.use(passport.initialize());
 // app.use(passport.session());
 
-app.use('/api/Auth', router);
-app.use('/api/library', router1);
-app.use('/api/settings', router2);
+app.use('/api/Auth', auth);
+app.use('/api/library', library);
+app.use('/api/settings', edit);
 
 async function startApp() {
   try {

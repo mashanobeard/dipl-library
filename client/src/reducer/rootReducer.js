@@ -4,6 +4,7 @@ import AuthReducer from './authReducer.js';
 import BooksReducer from './booksReducer.js';
 import UserReducer from './userReducer.js';
 import SettingReducer from './settingsReducer.js';
+import RatingReducer from './ratingReducer.js';
 
 export const rootReducer = combineReducers({
   login: LoginReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   books: BooksReducer,
   user: UserReducer,
   settings: SettingReducer,
+  rating: RatingReducer,
 });

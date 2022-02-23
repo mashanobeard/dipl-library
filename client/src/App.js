@@ -7,7 +7,7 @@ import ErrorPage from '../src/components/ErrorPage/index';
 import PrivateRoute from './PrivateRoute';
 //import Header from '../src/components/Header/index';
 import BookPageContainer from './containers/BookPageContainer';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
 import SettingsPageContainer from '../src/containers/SettingsContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import WelcomePage from './components/WelcomePage';

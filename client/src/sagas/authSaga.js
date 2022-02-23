@@ -18,19 +18,3 @@ function* sagaAuthWatcher() {
   yield takeLatest(requestAuth, AuthRequest);
 }
 export default sagaAuthWatcher;
-
-// function* sagaWorker(action) {
-//   console.log(action, 'sagaA');
-//   try {
-//     const response = yield call('api/Auth/registration', payload, 'post');
-//     console.log(response.data, 'saga1A');
-//     yield put(successAuth(response.data));
-//   } catch (error) {
-//     yield put(errorAuth(error));
-//   }
-// }
-
-// function* sagaAuthWatcher() {
-//   yield takeLatest(requestAuth, sagaWorker);
-// }
-// export default sagaAuthWatcher;

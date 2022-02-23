@@ -1,18 +1,5 @@
-// import React from 'react';
-
-// const SettingsPage = () => {
-//   return (
-//     <>
-//       <h1>Edit your profile</h1>
-//     </>
-//   );
-// };
-
-// export default SettingsPage;
-
 import React from 'react';
 import { Formik, Form } from 'formik';
-
 import {
   Avatar,
   Button,
@@ -26,7 +13,13 @@ import { useStyles } from './style';
 import HeaderContainer from '../../containers/HeaderContainer';
 import validationSettingsSchema from '../../services/validation/settingsValidation';
 
-const SettingsPage = ({ handleUpdate, username, email }) => {
+const SettingsPage = ({
+  handleUpdate,
+  handleSetImage,
+  username,
+  email,
+  pic,
+}) => {
   const classes = useStyles();
 
   return (
@@ -34,28 +27,29 @@ const SettingsPage = ({ handleUpdate, username, email }) => {
       <HeaderContainer />
       <div className={classes.block}>
         <Container className={classes.formBlock}>
-          <Avatar className={classes.avatarPic} alt="avatar" />
+          <Avatar className={classes.avatarPic} src={pic} alt="avatar" />
           <Formik
             initialValues={{
               username: username,
               email: email,
+              pic: pic,
             }}
             validationSchema={validationSettingsSchema}
             onSubmit={handleUpdate}
           >
-            {({
-                errors,
-                touched,
-                handleChange,
-                handleBlur,
-                handleSubmit
-              }) => (
+            {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
               <Form onSubmit={handleSubmit}>
                 <CardContent>
                   <Typography className={classes.text} variant="h5">
                     Change your profile picture
                   </Typography>
-                  <input id="pic" type="file" name="file"></input>
+                  <input
+                    id="pic"
+                    type="file"
+                    name="file"
+                    accept="image/*"
+                    onChange={(e) => handleSetImage(e)}
+                  ></input>
                 </CardContent>
                 <CardContent>
                   <TextField
