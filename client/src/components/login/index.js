@@ -82,7 +82,8 @@ const Login = ({ handleSubmitBtn }) => {
                   Enter
                 </Button>
               </p>
-              <Link to="/registration">Create new account</Link>
+              <Link to="/registration">Create new account</Link> <div></div>
+              <Link to="/main">Go to main page</Link>
             </div>
           </Form>
         )}

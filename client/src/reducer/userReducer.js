@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 
-import { successLogin } from '../actions';
+import { successLogin, logOutUser } from '../actions';
 // import {avatarUpdateSucceeded} from '../../Setting/action';
 
 const initialState = {
@@ -13,10 +13,12 @@ const initialState = {
 
 const UserReducer = handleActions(
   {
-    // [successLogin]: (state, action) => ({
-    //   ...action.payload,
-    // }),
-    // [logOutUser]: (state, action) => initialState,
+    [successLogin]: (state = initialState, action) => {
+      console.log(state);
+      return { ...state, ...action.payload };
+    },
+
+    [logOutUser]: (state, action) => initialState,
     // [avatarUpdateSucceeded]: (state, action) => {
     //   return {...state, processing: true, pic:action.payload.pic };
     // },

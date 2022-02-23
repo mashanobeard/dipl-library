@@ -8,7 +8,7 @@ import {
   errorUpdateUser,
 } from '../actions/index';
 
-const getToken = (state) => state.login.token;
+const getToken = (state) => state.user.token;
 
 function* settingWorker(action) {
   try {

@@ -31,7 +31,7 @@ const HeaderContainer = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  username: state.login.username,
+  username: state.user.username,
   // pic: state.user.pic,
 });
 

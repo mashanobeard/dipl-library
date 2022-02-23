@@ -39,13 +39,49 @@ export const BookList = async (token) => {
     },
   });
 };
-
 export const BookId = async (id) => {
   return await requests.get(`/library/get/${id}`);
 };
 
-export const editUser = async (id, data) => {
-  return await requests.post(`/settings/edit`, { data });
+export const editUser = async (id) => {
+  return await requests.put('/settings/edit', { data: id });
+};
+
+export const createComment = async (comData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = await requests.post('/library/comment', comData, config);
+
+  return response.data;
+};
+
+export const getComments = async (id, token) => {
+  return await requests.get(`/library/comments/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const postRating = async (data, token) => {
+  return await requests.post('/library/rating', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data,
+  });
+};
+
+export const getRating = async (id, token) => {
+  return await requests.get(`/library/rating/${id}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 // const getFilms = async (token, query) => {
 //   return await requests.get(`/films${query}`, {

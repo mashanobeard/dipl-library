@@ -10,14 +10,7 @@ function* LoginRequest(action) {
     console.log(data, 'user-data');
     localStorage.setItem('token', JSON.stringify(data));
 
-    yield put(
-      successLogin({
-        token: data.token,
-        username: data.username,
-        email: data.email,
-        // pic: data.pic,
-      })
-    );
+    yield put(successLogin(data));
   } catch (error) {
     console.log(error, 'err');
     // yield put(errorLogin(error));

@@ -18,7 +18,6 @@ const BooksReducer = handleActions(
     },
     [successGetBooks]: (state = initialState, action) => {
       console.log(action.payload);
-      console.log(state, 'success-state-books');
 
       return { ...state, books: action.payload };
     },
@@ -28,17 +27,18 @@ const BooksReducer = handleActions(
 
     // [requestGetBook]: (state = initialState, action) => {
     //   console.log(state, 'state');
-    //   console.log(action.payload, 'fdfdf');
+    //   console.log(action.payload, 'id');
 
     //   return { ...state, ...action.payload };
     // },
     [successGetBook]: (state = initialState, action) => {
-      console.log(action.payload, 'hi');
+      console.log(state, 'state');
+      console.log(action.payload);
 
-      return { ...state, ...action.payload };
+      return { ...state, book: action.payload };
     },
 
-    [errorGetBook]: (state, action) => action.payload,
+    [errorGetBook]: (state, action) => [],
   },
   initialState
 );

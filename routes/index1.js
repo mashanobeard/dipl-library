@@ -3,15 +3,21 @@ import express from 'express';
 import getController from '../controllers/getBooks.js';
 import getIdController from '../controllers/getIdBook.js';
 import createController from '../controllers/createBooks.js';
-import updateController from '../controllers/updateBooks.js';
+import createComment from '../controllers/createComment.js';
 import book from '../models/book.js';
-
-//import authorize from '../middleware/passport/auth.js';
+import getComments from '../controllers/getComments.js';
+import postRating from '../controllers/postRating.js';
+import getRating from '../controllers/getRating.js';
 
 const router1 = express.Router();
 
 router1.get('/get', getController);
 router1.get('/get/:id', getIdController);
+router1.post('/comment', createComment);
+router1.get('/comments/:id', getComments);
+
+router1.post('/rating', postRating);
+router1.get('/rating/:id', getRating);
 
 router1.post('/', createController);
 router1.put('/:id', async (req, res) => {

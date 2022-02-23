@@ -23,14 +23,14 @@ const SettingsPageContainer = (props) => {
     handleUpdate,
   };
 
-  console.log(username, 'username');
+  console.log(username, 'username-settings');
 
   return <SettingsPage {...settingsProps} />;
 };
 
 const mapStateToProps = (state) => ({
-  username: state.settings.username,
-  email: state.settings.email,
+  username: state.user.username,
+  email: state.user.email,
   // pic: state.user.pic,
 });
 

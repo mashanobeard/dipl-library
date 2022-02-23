@@ -1,50 +1,75 @@
-// import React from 'react';
-// import Container from '@material-ui/core/Container';
+import React from 'react';
+import {
+  Container,
+  Card,
+  Typography,
+  CardMedia,
+  CardContent,
+} from '@material-ui/core';
+import { Rating } from '@material-ui/lab';
+import PropTypes from 'prop-types';
+import useStyles from './style';
+import HeaderContainer from '../../containers/HeaderContainer';
+import CommentContainer from '../../containers/CommentContainer';
 
-// // import { useDispatch, useSelector } from 'react-redux';
-// import Card from '@material-ui/core/Card';
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardActions from '@material-ui/core/CardActions';
-// import CardContent from '@material-ui/core/CardContent';
-// import CardMedia from '@material-ui/core/CardMedia';
-// import Typography from '@material-ui/core/Typography';
-// import PropTypes from 'prop-types';
+const BookPage = (props) => {
+  const { book, handleRating, rating, message, length } = props;
+  console.log(book);
+  const classes = useStyles();
 
-// // import { TableRow, TableCell } from '@material-ui/core';
+  return (
+    <>
+      <HeaderContainer />
+      <Container className={classes.form}>
+        <Card className={classes.card}>
+          <CardMedia className={classes.media} image={book?.image} />
+          <CardContent className={classes.content}>
+            <Typography className={classes.title}>{book?.title}</Typography>
+            <Typography className={classes.subtitle1}>
+              {book?.author}
+            </Typography>
 
-// //import useStyles from './style';
+            <Typography className={classes.subtitle2}>{book?.year}</Typography>
+            {/* <Rating
+              name="simple-controlled"
+              value={rating}
+              precision={0.2}
+              onChange={handleRating}
+            /> */}
 
-// const BookPage = ({ book }) => {
-//   console.log(book, 'b');
-//   // console.log(props.book.title, 'curbok');
-//   // const { book } = props;
-//   //const classes = useStyles();
+            <Typography>
+              <Rating
+                name="simple-controlled"
+                value={rating}
+                precision={0.2}
+                onChange={handleRating}
+              />
+            </Typography>
 
-//   return (
-//     <div>
-//       {/* HI
-//       {book && JSON.stringify(book._id)} */}
+            <Typography>{message}</Typography>
+            <span>Total voted: {book?.length}</span>
 
-//       <Container>
-//         <Card>
-//           <CardActionArea>
-//             <CardMedia />
-//             <CardContent>
-//               <div>{book.title}</div>
+            <Typography className={classes.text}>
+              {book?.description}
+            </Typography>
+            <Typography className={classes.genre}>{book?.genre}</Typography>
+            <Typography>
+              <div>Comments</div>
+              <CommentContainer />
+            </Typography>
+          </CardContent>
+        </Card>
+      </Container>
+    </>
+  );
+};
 
-//               {/* {book.map((el, i) => (
-//                 <div key={i}>{el.title}</div>
-//               ))} */}
-//             </CardContent>
-//           </CardActionArea>
-//           <CardActions></CardActions>
-//         </Card>
-//       </Container>
-//     </div>
-//   );
-// };
-// BookPage.propTypes = {
-//   title: PropTypes.string,
-// };
+BookPage.propTypes = {
+  title: PropTypes.string,
+  author: PropTypes.string,
+  year: PropTypes.number,
+  description: PropTypes.string,
+  genre: PropTypes.string,
+};
 
-// export default BookPage;
+export default BookPage;

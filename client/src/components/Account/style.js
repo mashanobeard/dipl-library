@@ -6,6 +6,8 @@ export const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     marginBottom: '20px',
+    backgroundColor: '#faedcd',
+    width: '450px',
   },
   text: {
     fontStyle: 'Montserrat',
@@ -13,6 +15,8 @@ export const useStyles = makeStyles((theme) => ({
   updateButton: {
     textTransform: 'none',
     backgroundColor: '#d8e2dc',
+    marginTop: '10px',
+    marginBottom: '15px',
   },
   buttonBlock: {
     display: 'flex',

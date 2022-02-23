@@ -10,16 +10,21 @@ import {
 const initialState = {
   username: '',
   email: '',
+  isUpdated: '',
 };
 
 const settingReducer = handleActions(
   {
-    [requestUpdateUser]: (state, action) => state,
+    // [requestUpdateUser]: (state, action) => state,
     [successUpdateUser]: (state, action) => {
-      const data = { ...action.payload };
+      const data = { isUpdated: true, ...action.payload };
+      console.log(data);
       return data;
     },
-    [errorUpdateUser]: (state, action) => action.payload,
+    [errorUpdateUser]: (state, action) => {
+      const data = { isUpdated: false, ...action.payload };
+      return data;
+    },
 
     // [errorUpdatePic]: (state, action) => ({
     //   processing: false,

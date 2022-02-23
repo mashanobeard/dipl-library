@@ -3,7 +3,7 @@ import { takeLatest, put, call, select } from 'redux-saga/effects';
 import { requestGetBook, successGetBook, errorGetBook } from '../actions/index';
 import { BookId } from '../services/axios/index';
 
-// const getToken = (state) => state.user.token;
+//const getToken = (state) => state.user.token;
 
 function* BookRequest(action) {
   try {

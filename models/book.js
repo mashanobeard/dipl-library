@@ -25,6 +25,10 @@ const bookSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  rating: {
+    type: mongoose.Schema.Types.Number,
+    ref: 'Rating',
+  },
 });
 
 export default mongoose.model('book', bookSchema);
