@@ -33,9 +33,11 @@ const Header = ({ handlelogOut, handleClickAccount, pic, username }) => {
           <Typography className={classes.title}>Library</Typography>
 
           <div>
-            <Button color="inherit"
-                    href="/settings"
-                    style={{textTransform: 'none'}}>
+            <Button
+              color="inherit"
+              href="/settings"
+              style={{ textTransform: 'none' }}
+            >
               {username}
             </Button>
           </div>

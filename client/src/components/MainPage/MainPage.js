@@ -13,6 +13,7 @@ import useStyles from './style';
 const MainPage = (props) => {
   const { bookAll } = props;
   console.log(bookAll);
+
   const classes = useStyles();
   return (
     <>

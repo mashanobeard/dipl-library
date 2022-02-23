@@ -22,14 +22,7 @@ const Login = ({ handleSubmitBtn }) => {
         validationSchema={validationLogSchema}
         onSubmit={handleSubmitBtn}
       >
-        {
-          ({
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-            handleSubmit
-          }) => (
+        {({ errors, touched, handleChange, handleBlur, handleSubmit }) => (
           <Form className="login-form">
             <div>
               <p className="username">
