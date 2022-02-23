@@ -1,70 +1,55 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { requestGetBook } from '../actions/index.js';
+import { useDispatch, useSelector } from 'react-redux';
+
 import {
-  requestGetBook,
-  requestGetRating,
-  requestPostRating,
-} from '../actions/index.js';
-
-import BookPage from '../components/BookPage/BookPage';
-
-import { BookSelector } from '../selectors/index.js';
+  Container,
+  Card,
+  Typography,
+  CardContent,
+  CardMedia,
+} from '@material-ui/core/';
+import HeaderContainer from './HeaderContainer.js';
+import useStyles from '../components/BookPage/style';
 
 const BookPageContainer = (props) => {
-  const {
-    requestGetBook,
-    currentBook,
-    username,
-    message,
-    rating,
-    requestGetRating,
-    requestPostRating,
-  } = props;
-
   console.log(props, 'props');
-
+  const classes = useStyles();
   const { id } = useParams();
 
-  useEffect(() => {
-    requestGetBook(id);
-    requestGetRating(id);
-  }, []);
+  const dispatch = useDispatch();
 
-  const handleRating = (e) => {
-    const totalRating = {
-      user: username,
-      rating: e.target.value,
-      bookId: currentBook._id,
-    };
-    requestPostRating(totalRating);
-    requestGetRating(id);
-  };
+  useEffect(() => {
+    dispatch(requestGetBook(id));
+  }, []);
+  const book = useSelector((state) => ({ ...state.books }));
+  console.log(book, 'bo2k');
 
   return (
-    <BookPage
-      book={currentBook}
-      message={message}
-      handleRating={handleRating}
-      rating={rating}
-      //length={currentBook.length}
-    />
+    <>
+      <HeaderContainer />
+      <Container className={classes.form}>
+        <Card className={classes.card}>
+          <CardMedia className={classes.media} image={book.image} />
+          <CardContent className={classes.content}>
+            <Typography className={classes.title}>{book.title}</Typography>
+            <Typography className={classes.subtitle1}>{book.author}</Typography>
+
+            <Typography className={classes.subtitle2}>{book?.year}</Typography>
+            {/* <Rating
+              name="simple-controlled"
+              precision={0.2}
+            /> */}
+
+            <Typography className={classes.text}>{book.description}</Typography>
+            <Typography className={classes.genre}>{book.genre}</Typography>
+            <Typography></Typography>
+          </CardContent>
+        </Card>
+      </Container>
+    </>
   );
 };
-const mapStateToProps = (state) => ({
-  username: state.user.username,
-  rating: state.rating.rating,
-  message: state.rating.message,
 
-  currentBook: BookSelector(state),
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    requestGetBook: (id) => dispatch(requestGetBook(id)),
-    requestPostRating: (rating) => dispatch(requestPostRating(rating)),
-    requestGetRating: (id) => dispatch(requestGetRating(id)),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BookPageContainer);
+export default BookPageContainer;
