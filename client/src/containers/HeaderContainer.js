@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import Header from '../components/Header/index';
 import { logOutUser } from '../actions';
 import { useNavigate } from 'react-router-dom';
-import {getStorageData, removeStorageData} from "../services/localStorage/localStorage";
+import {
+  getStorageData,
+  removeStorageData,
+} from '../services/localStorage/localStorage';
 
 const HeaderContainer = (props) => {
   const { logOutUser } = props;
@@ -23,7 +26,6 @@ const HeaderContainer = (props) => {
   return (
     <Header
       username={username}
-      // pic={pic}
       handlelogOut={handlelogOut}
       handleClickAccount={handleClickAccount}
     />

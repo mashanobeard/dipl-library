@@ -14,32 +14,6 @@ const AuthContainer = ({ requestAuth, register }) => {
     navigate('/');
   };
 
-  // const { requestAuth } = props;
-  // console.log(props.username, 'props-reg');
-
-  // const [form, setForm] = useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   confirmPassword: '',
-  // });
-
-  // const changeHandler = (event) => {
-  //   // requestAuth(event.target.value);
-  //   setForm({ ...form, [event.target.name]: event.target.value });
-  //   console.log(form, 'form');
-  //   // console.log(event.target.value, 'ev');
-  //   if (event.target.value) {
-  //     requestAuth(form);
-  //   }
-  // };
-
-  // const changeHandler = (event) => {
-  //   event.preventDefault();
-  //   console.log('btn-reg');
-  //   navigate('/');
-  // };
-
   return (
     <Registration
       // changeHandler={changeHandler}

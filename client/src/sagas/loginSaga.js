@@ -9,12 +9,14 @@ function* LoginRequest(action) {
 
     localStorage.setItem('token', JSON.stringify(data));
 
-    yield put(successLogin({
-      token: data.token,
-      username: data.username,
-      email: data.email,
-      // pic: data.pic,
-    }));
+    yield put(
+      successLogin({
+        token: data.token,
+        username: data.username,
+        email: data.email,
+        // pic: data.pic,
+      })
+    );
   } catch (error) {
     console.log(error, 'err');
     // yield put(errorLogin(error));
@@ -25,44 +27,3 @@ function* sagaLoginWatcher() {
 }
 
 export default sagaLoginWatcher;
-
-// export function* sagaWatcher() {
-//   try {
-//     yield takeLatest(requestLogin, sagaWorker);
-//   } catch (error) {
-//     yield put(errorLogin, error);
-//   }
-// }
-
-// function* sagaWorker(action) {
-//   console.log(action, 'action');
-//   try {
-//     yield put(successLogin());
-//     const payload = yield call(fetchUsers);
-//     yield put({});
-//   } catch (error) {
-//     yield put(errorLogin, error);
-//   }
-// }
-
-// async function fetchUsers() {
-//   const response = await fetch('http://localhost:5000/api/auth/login');
-//   return await response.json();
-// }
-
-// function* sagaWorker(action) {
-//   console.log(action, 'saga');
-//   try {
-//     const response = yield call('api/Auth/Login', action.payload);
-//     console.log(response.data, 'saga1');
-//     yield put(successLogin(response.data));
-//   } catch (error) {
-//     yield put(errorLogin(error));
-//   }
-// }
-
-// function* sagaWatcher() {
-//   yield takeLatest(requestLogin, sagaWorker);
-// }
-
-// export default sagaWatcher;

@@ -10,7 +10,7 @@ const validationLogSchema = yup.object().shape({
   password: yup
     .string()
     .typeError('Must be a string')
-    .required('Password is required')
+    .required('Password is required!')
     .min(6, 'min 6 symbols'),
 });
 

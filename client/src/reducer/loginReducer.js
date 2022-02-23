@@ -1,17 +1,12 @@
 import { handleActions } from 'redux-actions';
-import {
-  requestLogin,
-  successLogin,
-  errorLogin,
-  logOutUser,
-} from '../actions/index.js';
+import { requestLogin, successLogin, logOutUser } from '../actions/index.js';
 
 const initialState = [];
 
 const LoginReducer = handleActions(
   {
     [requestLogin]: (state, action) => {
-        return { ...state, ...action.payload };
+      return { ...state, ...action.payload };
     },
 
     [successLogin]: (state, { payload }) => {
